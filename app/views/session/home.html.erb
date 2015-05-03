@@ -3,18 +3,18 @@
   <p class="filter-container-label">Find locations with...</p>
   <p class="filter-group-label">Resources:</p>
   <li>
-    <input type="checkbox" id="filter-food-switch" data-filter-value="food" />
-    <label for="filter-food-switch">
-      Food
-      <%= image_tag 'food_pin.png', size: '16x16', alt: 'food' %>
-    </label>
-  </li>
-  <li>
     <input type="checkbox" id="filter-water-switch"
         data-filter-value="water" />
     <label for="filter-water-switch">
       Water
       <%= image_tag 'water_pin.png', size: '16x16', alt: 'water' %>
+    </label>
+  </li>
+  <li>
+    <input type="checkbox" id="filter-food-switch" data-filter-value="food" />
+    <label for="filter-food-switch">
+      Food
+      <%= image_tag 'food_pin.png', size: '16x16', alt: 'food' %>
     </label>
   </li>
   <li>
@@ -33,7 +33,7 @@
     </label>
   </li>
   <div class="peopleCount">
-    <p class="filter-group-label"># of people:</p>
+    <p class="filter-group-label">Min. # of people:</p>
     <div class="range-slider radius"
         data-slider data-options="start: 0; end: 500; step: 10; display_selector: #peopleCountNumber;">
       <span class="range-slider-handle" role="slider" tabindex="0"></span>
