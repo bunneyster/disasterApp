@@ -40,6 +40,10 @@ class GoogleMapClass
     Liveworx.Venues.readAll()
         .then (venues) =>
           @_processVenue(venue) for venue in venues
+          setTimeout @_readVenues.bind(@), 10000
+        .catch (error) =>
+          console.log error
+          setTimeout @_readVenues.bind(@), 2000
 
   _processVenue: (venue) ->
     @_venues[venue.id] = venue
@@ -55,24 +59,28 @@ class GoogleMapClass
       marker.setMap @_map
     else
       marker.setMap null
-    if venue.icon_url
-      marker.setIcon(url: venue.icon_url, scaledSize: new google.maps.Size(8, 16))
+      return
+    marker.setIcon(url: venue.icon_url)
     marker.setPosition new google.maps.LatLng(venue.lat, venue.long)
     marker.setTitle venue.name
 
   _matchesFilters: (venue) ->
-    for name, value of @_filters
-      continue unless value is true
-      return false unless venue.filters[name] is true
+    if @_filters.nothing is true
+      for name, value of venue.filters
+        return false if value is true
+    else
+      for name, value of @_filters
+        continue unless value is true
+        return false if venue.filters[name] is false
     true
 
   _onMarkerClick: (venueId, event) ->
     venue = @_venues[venueId]
     @_infoWindow.close()
-    @_infoWindow = new google.maps.InfoWindow(content: @_getMarketContent(venue))
+    @_infoWindow = new google.maps.InfoWindow(content: @_getMarkerContent(venue))
     @_infoWindow.open @_map, @_markers[venueId]
 
-  _getMarketContent: (venue) ->
+  _getMarkerContent: (venue) ->
     pieces = ["<div>#{venue.name}</div>"]
     for filterName, value of venue.filters
       continue unless value

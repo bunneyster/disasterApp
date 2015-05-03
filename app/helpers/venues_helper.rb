@@ -1,6 +1,6 @@
 module VenuesHelper
   def venue_icon_url(venue)
-    people = venue.sensors['people']
+    #people = venue.sensors['people']
     water = venue.sensors['hasWater']
     food = venue.sensors['hasFood']
     temp = venue.sensors['hasHeat']
@@ -13,6 +13,8 @@ module VenuesHelper
       image_url('heat_pin.png')
     elsif power
       image_url('power_pin.png')
+    else
+      image_url('none_pin.png')
     end
   end
 end

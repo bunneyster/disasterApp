@@ -16,48 +16,6 @@ class Venue < ActiveRecord::Base
   # The sensor readings.
   serialize :sensors, JSON
 
-  # Create new venues in Thingworx.
-  def self.create_venue_in_thingworx!
-    create_things_in_thingworx!('TestVenue', 'VenueTemplate', 'DescriptionTest')
-  end
-
-  # Create things in Thingworx.
-  def self.create_things_in_thingworx!(thing_name, base_template, description)
-    uri = URI "http://live11.twplatform.com/Thingworx/Resources/EntityServices/Services/CreateThing?method=post&name=#{thing_name}&thingTemplateName=#{base_template}&description=#{description}"
-
-    request = Net::HTTP::Post.new uri
-    request.basic_auth 'Administrator', 'admin'
-
-    response = Net::HTTP.start uri.hostname, uri.port do |http|
-      http.request request
-    end
-  end
-
-  # Set property of thing in Thingworx.
-  def self.set_property_in_thingworx!(thing_name, property_name, value)
-    uri = URI "http://live11.twplatform.com/Thingworx/Things/#{thing_name}/Properties/#{property_name}?method=put&value=#{value}"
-
-    request = Net::HTTP::Post.new uri
-    request.basic_auth 'Administrator', 'admin'
-
-    response = Net::HTTP.start uri.hostname, uri.port do |http|
-      http.request request
-    end
-  end
-
-  # Set location property of thing in Thingworx.
-  def self.set_location_property_in_thingworx!(thing_name, lat, long)
-    uri = URI "http://live11.twplatform.com/Thingworx/Things/#{thing_name}/Properties/location?method=put&value=#{lat},%20­#{long}"
-
-    request = Net::HTTP::Post.new uri
-    request.basic_auth 'Administrator', 'admin'
-
-    response = Net::HTTP.start uri.hostname, uri.port do |http|
-      http.request request
-    end
-  end
-
-
   # Updates the database with venue information from Thingworx.
   def self.reload_from_thingworx!
     raw_venues = read_from_thingworx!
