@@ -15,6 +15,7 @@ class WebController
     @_app.get '/hello', @_onHello.bind(@)
     @_app.get '/s/:sensor', @_onSensor.bind(@)
     @_app.get '/blink', @_onBlink.bind(@)
+    @_app.get '/uuids', @_onUuids.bind(@)
 
   # Starts the Web front-end.
   #
@@ -41,7 +42,6 @@ class WebController
 
   # GET /blink?color=green&seconds=3
   _onBlink: (request, response) ->
-    console.log request.params
     color = request.params.color || request.query.color
     seconds = parseInt request.params.seconds || request.query.color
     if color of @_blinkers
@@ -51,6 +51,10 @@ class WebController
       value = 'missing LED'
     response.json value: value
 
+  # GET /uuids
+  _onUuids: (request, response) ->
+    uuids = Object.keys @_devices.btCount._devices
+    response.json uuids: uuids
 
 
 module.exports = WebController

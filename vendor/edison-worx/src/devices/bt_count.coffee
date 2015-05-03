@@ -10,9 +10,9 @@ class BtCount
     noble.startScanning()
 
   _onDiscover: (peripheral) ->
-    uuid = peripheral.uuid
-    unless uuid in @_devices
-      @_devices[uuid] = true
+    address = peripheral.address
+    unless address in @_devices
+      @_devices[address] = true
       @_deviceCount += 1
 
   value: ->

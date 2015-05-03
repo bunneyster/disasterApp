@@ -65,7 +65,7 @@ class Venue < ActiveRecord::Base
       venue = Venue.where(lat: raw_venue[:lat], long: raw_venue[:long]).
           first_or_initialize
       venue.update_attributes raw_venue
-      venue.save!
+      venue.save
       venue
     end
   end
