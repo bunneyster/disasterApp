@@ -150,7 +150,7 @@ class GoogleMapClass
     pieces.push("<p class='popup-field'><i class='fa fa-male'></i> #{venue.people}</p>")
     pieces.push("<p class='override-section popup-field'>")
     pieces.push("<a class='button alert radius' onclick='window.Liveworx.GoogleMap.onAddWarningClick()'><i class='fa fa-warning'></i> Report</a>")
-    if venue.userWarnings = 1
+    if venue.userWarnings is 1
       pieces.push("<span class='warning-count'>  (#{venue.userWarnings} person thinks this location is not safe.)</span>")
     else if venue.userWarnings > 1
       pieces.push("<span class='warning-count'>  (#{venue.userWarnings} people think this location is not safe.)</span>")
