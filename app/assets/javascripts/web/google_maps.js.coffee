@@ -52,8 +52,11 @@ class GoogleMapClass
   _onMarkerClick: (venueId, event) ->
     venue = @_venues[venueId]
     @_infoWindow.close()
-    @_infoWindow = new google.maps.InfoWindow(content: venue.name)
+    @_infoWindow = new google.maps.InfoWindow(content: @_getMarketContent(venue))
     @_infoWindow.open @_map, @_markers[venueId]
+
+  _getMarketContent: (venue) ->
+    "<div>#{venue.name}</div>" + "<i class='fa fa-male'> #{venue.id}</i>"
 
   # Tries to center the map using the user's location.
   _bootGeolocation: ->
