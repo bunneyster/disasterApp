@@ -4,6 +4,7 @@ class GoogleMapClass
     @_mapsInitialized = false
     @_booted = false
     @_map = null
+    @_filters = {}
     @_markers = {}
     @_venues = {}
 
@@ -14,6 +15,11 @@ class GoogleMapClass
   onMapsDomRoot: (domRoot) ->
     @_domRoot = domRoot
     @_tryBooting()
+
+  setFilters: (filters) ->
+    @_filters = filters
+    for _, venue of @_venues
+      @_processVenue venue
 
   _tryBooting: ->
     return if @_booted
@@ -36,18 +42,27 @@ class GoogleMapClass
 
   _processVenue: (venue) ->
     @_venues[venue.id] = venue
-    oldMarker = @_markers[venue.id]
-    return if oldMarker
+    if venue.id of @_markers
+      marker = @_markers[venue.id]
+    else
+      marker = new google.maps.Marker()
+      @_markers[venue.id] = marker
+      google.maps.event.addListener marker, 'click',
+          @_onMarkerClick.bind(@, venue.id)
 
-    marker = new google.maps.Marker(
-        map: @_map,
-        icon: venue.icon_url,
-        position: new google.maps.LatLng(venue.lat, venue.long)
-        title: venue.name)
-    google.maps.event.addListener marker, 'click',
-        @_onMarkerClick.bind(@, venue.id)
+    if @_matchesFilters venue
+      marker.setMap @_map
+    else
+      marker.setMap null
+    marker.setIcon venue.icon_url
+    marker.setPosition new google.maps.LatLng(venue.lat, venue.long)
+    marker.setTitle venue.name
 
-    @_markers[venue.id] = marker
+  _matchesFilters: (venue) ->
+    for name, value of @_filters
+      continue unless value is true
+      return false unless venue.filters[name] is true
+    true
 
   _onMarkerClick: (venueId, event) ->
     venue = @_venues[venueId]
@@ -90,3 +105,6 @@ $ ->
   container = $ '#google-maps-container'
   if container.length > 0
     Liveworx.GoogleMap.onMapsDomRoot container[0]
+    Liveworx.Filters.onChange = ->
+      Liveworx.GoogleMap.setFilters Liveworx.Filters.filters
+    Liveworx.GoogleMap.on
