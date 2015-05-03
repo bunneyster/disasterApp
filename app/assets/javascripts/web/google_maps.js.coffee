@@ -5,6 +5,7 @@ class GoogleMapClass
     @_booted = false
     @_map = null
     @_markers = {}
+    @_venues = {}
 
   onMapsInitialized: ->
     @_mapsInitialized = true
@@ -21,11 +22,9 @@ class GoogleMapClass
     @_boot()
 
   _boot: ->
-    console.log 'booting'
-    @_myLatlng = new google.maps.LatLng(-34.397, 150.644);
     options =
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 12
+        zoom: 13
     @_map = new google.maps.Map(@_domRoot, options)
     @_bootGeolocation()
     @_readVenues()
@@ -36,11 +35,23 @@ class GoogleMapClass
           @_processVenue(venue) for venue in venues
 
   _processVenue: (venue) ->
-    unless venue.id of @_markers
-      @_markers[venue.id] = new google.maps.Marker(
-          map: @_map,
-          position: new google.maps.LatLng(venue.lat, venue.long)
-          title: venue.name)
+    @_venues[venue.id] = venue
+    oldMarker = @_markers[venue.id]
+    return if oldMarker
+
+    marker = new google.maps.Marker(
+        map: @_map,
+        position: new google.maps.LatLng(venue.lat, venue.long)
+        title: venue.name)
+    google.maps.event.addListener marker, 'click',
+        @_onMarkerClick.bind(@, venue.id)
+
+    @_markers[venue.id] = marker
+
+  _onMarkerClick: (venueId, event) ->
+    venue = @_venues[venueId]
+    infoWindow = new google.maps.InfoWindow(content: venue.name)
+    infoWindow.open @_map, @_markers[venueId]
 
   # Tries to center the map using the user's location.
   _bootGeolocation: ->
