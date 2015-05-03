@@ -15,6 +15,10 @@ html.map {
     display: flex;
     flex-direction: column;
   }
+
+  img {
+    max-width: inherit;
+  }
 }
 
 #google-maps-container {
@@ -24,6 +28,12 @@ html.map {
 #filters-container {
   display: block;
   list-style: none;
+  background-color: #2f0080;
+  > p {
+    display: inline;
+    color: white;
+    margin-right: 2rem;
+  }
   > li {
     display: inline-block;
     > input {
@@ -31,6 +41,7 @@ html.map {
     }
     > label {
       margin: 0 2rem 0 0.1rem;
+      color: white;
     }
   }
   padding: 0.5rem 1rem;
