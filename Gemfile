@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.2'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Bower integration.
+gem 'bower-rails', '>= 0.9.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

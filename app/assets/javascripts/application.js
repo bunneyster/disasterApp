@@ -3,6 +3,7 @@
 // Shims.
 //= require es6-promise
 //= require es6-promise-install
+//= require fetch
 //
 // Libraries.
 //= require jquery

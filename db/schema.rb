@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102055445) do
+ActiveRecord::Schema.define(version: 20150503044500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,5 +38,14 @@ ActiveRecord::Schema.define(version: 20141102055445) do
   end
 
   add_index "users", ["exuid"], name: "index_users_on_exuid", unique: true, using: :btree
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name",    limit: 128, null: false
+    t.float  "lat",                 null: false
+    t.float  "long",                null: false
+    t.text   "sensors",             null: false
+  end
+
+  add_index "venues", ["lat", "long"], name: "index_venues_on_lat_and_long", unique: true, using: :btree
 
 end
