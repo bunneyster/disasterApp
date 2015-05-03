@@ -55,7 +55,8 @@ class GoogleMapClass
       marker.setMap @_map
     else
       marker.setMap null
-    marker.setIcon venue.icon_url
+    if venue.icon_url
+      marker.setIcon(url: venue.icon_url, scaledSize: new google.maps.Size(8, 16))
     marker.setPosition new google.maps.LatLng(venue.lat, venue.long)
     marker.setTitle venue.name
 
