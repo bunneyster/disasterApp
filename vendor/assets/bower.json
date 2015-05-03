@@ -1,0 +1,7 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "es6-promise": "latest",
+    "fetch": "latest"
+  }
+}

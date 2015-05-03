@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   authpwn_session
 
+  get 'venues' => 'venues#index'
+
   resources :users
 
   get 'legal/:document' => 'legal#show', as: :legal
