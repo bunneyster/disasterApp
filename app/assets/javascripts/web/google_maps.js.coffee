@@ -38,6 +38,8 @@ class GoogleMapClass
     @_filters = {}
     @_markers = {}
     @_venues = {}
+    @_lastInfoWindow = null
+    @_lastInfoVenueId = null
 
   onMapsInitialized: ->
     @_mapsInitialized = true
@@ -63,7 +65,6 @@ class GoogleMapClass
         center: { lat: -34.397, lng: 150.644 },
         zoom: 13
     @_map = new google.maps.Map(@_domRoot, options)
-    @_infoWindow = new google.maps.InfoWindow()
     @_bootGeolocation()
     @_readVenues()
 
@@ -71,6 +72,8 @@ class GoogleMapClass
     Liveworx.Venues.readAll()
         .then (venues) =>
           @_processVenue(venue) for venue in venues
+          if @_lastInfoWindow isnt null
+            @_showInfoWindow @_lastInfoVenueId
           setTimeout @_readVenues.bind(@), 10000
         .catch (error) =>
           console.log error
@@ -109,11 +112,23 @@ class GoogleMapClass
     true
 
   _onMarkerClick: (venueId, event) ->
+    @_showInfoWindow venueId
+
+  _hideLastInfoWindow: ->
+    @_lastInfoWindow.close()
+    @_lastInfoWindow = null
+    @_lastInfoVenueId is null
+
+  _showInfoWindow: (venueId) ->
     venue = @_venues[venueId]
-    @_infoWindow.close()
-    @_infoWindow = new google.maps.InfoWindow(
+    if @_lastInfoWindow isnt null
+      @_hideLastInfoWindow()
+
+    infoWindow = new google.maps.InfoWindow(
         content: @_getMarkerContent(venue))
-    @_infoWindow.open @_map, @_markers[venueId].googleMarker()
+    infoWindow.open @_map, @_markers[venueId].googleMarker()
+    @_lastInfoWindow = infoWindow
+    @_lastInfoVenueId = venueId
 
   _getMarkerContent: (venue) ->
     pieces = [
