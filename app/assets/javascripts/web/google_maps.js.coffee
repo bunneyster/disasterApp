@@ -21,45 +21,45 @@ class GoogleMapClass
 
   _boot: ->
     console.log 'booting'
-    @_myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
+    @_myLatlng = new google.maps.LatLng(-34.397, 150.644);
     options =
-        center: @_myLatlng,
-        zoom: 4
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8
     @_map = new google.maps.Map(@_domRoot, options)
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition(@setLocation.bind(@),
+          @handleNoGeolocation.bind(@, true))
+    else
+      # Browser does not support Geolocation
+      @handleNoGeolocation false
+    @addMarker @_myLatlng, 'hello', 'test'
 
-    @_contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      'sandstone rock formation in the southern part of the '+
-      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-      'south west of the nearest large town, Alice Springs; 450&#160;km '+
-      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-      'Aboriginal people of the area. It has many springs, waterholes, '+
-      'rock caves and ancient paintings. Uluru is listed as a World '+
-      'Heritage Site.</p>'+
-      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-      '(last visited June 22, 2009).</p>'+
-      '</div>'+
-      '</div>'
+  setLocation: (position) ->
+    pos = new google.maps.LatLng(position.coords.latitude,
+                                 position.coords.longitude)
+    @_map.setCenter(pos)
 
-    @_infowindow = new google.maps.InfoWindow({
-      content: @_contentString
+  handleNoGeolocation: (errorFlag) ->
+    if errorFlag
+      content = 'Error: The Geolocation service failed.'
+    else
+      content = 'Error: Your browser does not support geolocation.'
+
+    infowindow = new google.maps.InfoWindow { content: content }
+
+  addMarker: (position, content, title) ->
+    infowindow = new google.maps.InfoWindow({
+      content: content
     });
 
-    @_marker = new google.maps.Marker({
-      position: @_myLatlng,
+    marker = new google.maps.Marker({
+      position: position,
       map: @_map,
-      title: 'Uluru (Ayers Rock)'
+      title: title
     });
 
-    google.maps.event.addListener @_marker, 'click', =>
-      @_infowindow.open @_map, @_marker
+    google.maps.event.addListener marker, 'click', =>
+      infowindow.open @_map, marker
 
 window.Liveworx ||= {}
 window.Liveworx.GoogleMap = new GoogleMapClass()
