@@ -1,6 +1,7 @@
 <div id="google-maps-container"></div>
 <ul id="filters-container">
-  <p class="filter-group-label">Find locations with:</p>
+  <p class="filter-container-label">Find locations with...</p>
+  <p class="filter-group-label">Resources:</p>
   <li>
     <input type="checkbox" id="filter-food-switch" data-filter-value="food" />
     <label for="filter-food-switch">
@@ -31,4 +32,14 @@
       <%= image_tag 'power_pin.png', size: '16x16', alt: 'power' %>
     </label>
   </li>
+  <div class="peopleCount">
+    <p class="filter-group-label"># of people:</p>
+    <div class="range-slider radius"
+        data-slider data-options="start: 0; end: 500; step: 10; display_selector: #peopleCountNumber;">
+      <span class="range-slider-handle" role="slider" tabindex="0"></span>
+      <span class="range-slider-active-segment"></span>
+      <input type="hidden">
+    </div>
+    <p id="peopleCountNumber"></p>
+  </div>
 </ul>
