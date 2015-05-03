@@ -75,10 +75,18 @@ def write_business(json)
   set_property venue_name, 'ui_name', json['name']
   set_property venue_name, 'address', json['address']
   set_property venue_name, 'phone', json['phone']
-  set_property venue_name, 'hasWater', rand < 0.75
-  set_property venue_name, 'hasFood', rand < 0.5
-  set_property venue_name, 'hasPower', rand < 0.25
-  set_property venue_name, 'hasHeat', rand < 0.5
+  if rand < 0.15
+    set_property venue_name, 'hasWater', 0
+    set_property venue_name, 'hasFood', 0
+    set_property venue_name, 'hasPower', 0
+    set_property venue_name, 'hasHeat', 0
+  else
+    set_property venue_name, 'hasWater', rand < 0.75
+    set_property venue_name, 'hasFood', rand < 0.5
+    set_property venue_name, 'hasPower', rand < 0.25
+    set_property venue_name, 'hasHeat', rand < 0.5
+  end
+
   set_property venue_name, 'peopleCount', rand(500).round
 end
 

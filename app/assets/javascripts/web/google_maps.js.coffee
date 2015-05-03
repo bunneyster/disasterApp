@@ -166,6 +166,11 @@ class GoogleMapClass
     headers[csrfHeaderName] = csrfHeaderValue
     fetch("/venues/#{venueId}/add_warning",
           method: 'post', body: '', headers: headers)
+        .then =>
+          @_venues[venueId].userWarnings =
+              (@_venues[venueId].userWarnings || 0) + 1
+          if @_lastInfoVenueId is venueId
+            @_showInfoWindow venueId
         .catch (error) ->
           console.error error
 
