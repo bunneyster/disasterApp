@@ -76,7 +76,7 @@ class GoogleMapClass
     for filterName, value of venue.filters
       continue unless value
       pieces.push "<img src='assets/" + filterName + "_48x.png' width='16px' height'16px'>"
-    pieces.push("<p><i class='fa fa-male'> #{venue.peopleCount}</i></p>")
+    pieces.push("<p><i class='fa fa-male'> #{venue.people}</i></p>")
     pieces.join('')
 
   # Tries to center the map using the user's location.
