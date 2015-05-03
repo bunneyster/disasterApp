@@ -30,7 +30,12 @@ class Venue < ActiveRecord::Base
 
   # Reads venue data from Thingworx.
   def self.read_from_thingworx!
-    uri = URI 'http://live11.twplatform.com/Thingworx/ThingTemplates/RemoteEdisonTemplate/Services/GetImplementingThingsWithData'
+    read_instances_from_thingworx!('VenueTemplate') +
+        read_instances_from_thingworx!('CleanVenueTemplate')
+  end
+
+  def self.read_instances_from_thingworx!(class_name)
+    uri = URI "http://live11.twplatform.com/Thingworx/ThingTemplates/#{class_name}/Services/GetImplementingThingsWithData"
 
     request = Net::HTTP::Post.new uri
     request.basic_auth 'Administrator', 'admin'
@@ -47,6 +52,10 @@ class Venue < ActiveRecord::Base
         long: row['Location']['longitude'],
         name: row['ui_name'],
         sensors: {
+          hasFood: row['hasFood'],
+          hasHeat: row['hasHeat'],
+          hasPower: row['hasPower'],
+          hasWater: row['hasWater'],
           icon: row['image'].downcase,
           light: row['LightSensor'],
           people: row['peopleCount'],
