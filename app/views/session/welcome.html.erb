@@ -1,0 +1,17 @@
+<section class="login-controls">
+  <div class="row text-center">
+    <p>
+      <%= link_to '/auth/google', class: 'large round success button' do %>
+        <%= fa_icon :google %> Sign in with Google
+      <% end %>
+      or
+    </p>
+    <p>
+      <%= link_to new_session_path, class: 'large round button' do %>
+        <%= fa_icon :key %> Sign in with password
+      <% end %>
+      or
+      <%= link_to 'Sign Up', new_user_path, class: 'large round success button' %>
+    </p>
+  </div>
+</section>

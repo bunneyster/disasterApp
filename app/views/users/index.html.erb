@@ -1,0 +1,26 @@
+<h2>Users</h2>
+
+<table>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user.email, user %>
+      </td>
+      <td>
+        <% if user.developer? %>
+          <%= fa_icon :html5 %> Developer
+        <% end %>
+      </td>
+      <td>
+        <% if user.admin? %>
+          <%= fa_icon :gavel %> Admin
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>
+

@@ -1,0 +1,19 @@
+<p>
+  What kind of user are you?
+</p>
+
+<div class="row text-center">
+  <%= form_tag choose_role_user_path(@user, role: :consumer),
+        method: :post do %>
+    <%= button_tag do %>
+      <%= fa_icon :user %> Consumer
+    <% end %>
+  <% end %>
+
+  <%= form_tag choose_role_user_path(@user, role: :server),
+        method: :post  do %>
+    <%= button_tag do %>
+      <%= fa_icon :suitcase %> Server
+    <% end %>
+  <% end %>
+</div>

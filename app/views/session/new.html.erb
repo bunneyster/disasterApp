@@ -1,0 +1,38 @@
+<h2>Sign in</h2>
+
+<% if @redirect_url %>
+<p>
+  We need you to sign in before we can show you the page that you are trying to
+  view.
+</p>
+<% end %>
+
+<div class="login">
+<%= form_for @session, url: session_path,
+                       builder: FoundationFormBuilder::Icons do |f| %>
+
+  <%= f.email_field :email, autofocus: true, required: true,
+          placeholder: 'your@email.com',
+          label: { icon: fa_icon('at'), text: 'Email Address' }  %>
+
+  <%= f.password_field :password, required: true,
+          placeholder: 'your password',
+          label: { icon: fa_icon('key'), text: 'Password' }  %>
+
+  <div class="row">
+    <div class="small-5 small-offset-1 columns">
+      <%= button_tag name: 'login', value: 'requested', type: 'submit',
+                     class: 'large success button expand' do %>
+        <%= fa_icon 'sign-in' %> Sign in
+      <% end %>
+    </div>
+    <div class="small-5 columns">
+      <%= button_tag name: 'reset_password', value: 'requested',
+                     type: 'submit', formaction: reset_password_session_path,
+                     class: 'large button expand' do %>
+        <%= fa_icon :unlock %> Reset password
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

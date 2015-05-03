@@ -1,0 +1,35 @@
+<h2>User <%= @user.email %></h2>
+
+<% if @user.can_edit? current_user %>
+
+<%= form_for @user do |f| %>
+  <%= f.hidden_field :developer, value: !@user.developer? %>
+  <% if @user.developer? %>
+    <%= f.button type: 'submit', class: 'button' do %>
+      <%= fa_icon :html5 %> Revoke Developer
+    <% end %>
+  <% else %>
+    <%= f.button type: 'submit', class: 'button' do %>
+      <%= fa_icon :html5 %> Make Developer
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.hidden_field :admin, value: !@user.admin? %>
+  <% if @user.admin? %>
+    <%= f.button type: 'submit', class: 'button' do %>
+      <%= fa_icon :html5 %> Revoke Admin
+    <% end %>
+  <% else %>
+    <%= f.button type: 'submit', class: 'button' do %>
+      <%= fa_icon :html5 %> Make Admin
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to @user, method: :delete, class: 'button' do %>
+  <%= fa_icon :trash %> Remove User
+<% end %>
+
+<% end %>

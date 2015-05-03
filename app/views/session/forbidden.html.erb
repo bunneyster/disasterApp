@@ -1,0 +1,19 @@
+<% if current_user %>
+<p>
+  Sorry, you are not allowed to see this page.
+</p>
+<p>
+  If you think you should be able to see this page, try
+  <%= link_to 'signing out', session_path, method: :delete %> and signing in as
+  a different user. You are currently signed in as
+  <strong><%= current_user.email %></strong>.
+</p>
+<% else %>
+<p>
+  The user will only see this if JavaScript is disabled. Ask them to
+  <%= link_to 'sign in', new_session_path %>.
+</p>
+<script type="text/javascript">
+window.location = "<%= new_session_path %>";
+</script>
+<% end %>

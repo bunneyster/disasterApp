@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "edison-cup",
+  "version": "0.1.0",
+  "description": "The code that runs on the Edison boards",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pwnall/locky.git"
+  },
+  "dependencies": {
+    "coffee-script": ">= 1.9.1",
+    "errorhandler": ">= 0",
+    "es6-promise": ">= 2.1.1",
+    "express": ">= 4.12.3",
+    "request": ">= 2.55.0",
+    "w3gram": ">= 0.1.5",
+    "ws": ">= 0.7.1"
+  },
+  "directories": {
+    "src": "src"
+  }
+}

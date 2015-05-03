@@ -1,0 +1,45 @@
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1>
+        <%= link_to root_url do %>
+          <%= fa_icon :home %> Where Do I Go?
+        <% end %>
+      </h1>
+    </li>
+  </ul>
+  <% if current_user %>
+  <section class="top-bar-section">
+    <ul class="left">
+      <li>
+        <%= link_to root_path do %>
+          <%= fa_icon :link %> Link a New Wearable
+        <% end %>
+      </li>
+    </ul>
+    <ul class="right">
+      <li class="has-dropdown">
+        <a>
+          <%= fa_icon :user %>
+
+          <%= current_user.name || current_user.email %>
+        </a>
+        <ul class="dropdown">
+          <% if current_user.password_credential %>
+          <li>
+            <%= link_to session_change_password_path do %>
+              <%= fa_icon :key %> Change Password
+            <% end %>
+          </li>
+          <% end %>
+          <li>
+            <%= link_to session_path, method: :delete do %>
+              <%= fa_icon :'sign-out' %> Sign Out
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <% end %>
+</nav>

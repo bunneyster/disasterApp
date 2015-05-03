@@ -1,0 +1,24 @@
+<div class="row">
+  <ul class="inline-list" id="footer-nav">
+    <% if false %>
+    <li>
+      <%= link_to 'About', about_path(document: :about) %>
+    </li>
+    <li>
+      <%= link_to 'Team', about_path(document: :team) %>
+    </li>
+    <% end %>
+    <li>
+      Where Do I Go? &copy; 2015
+    </li>
+    <li>
+      <%= link_to 'Terms', legal_path(document: :tos) %>
+    </li>
+    <li>
+      <%= link_to 'Privacy', legal_path(document: :privacy) %>
+    </li>
+    <li>
+      <%= link_to 'DMCA', legal_path(document: :dmca) %>
+    </li>
+  </ul>
+</div>
