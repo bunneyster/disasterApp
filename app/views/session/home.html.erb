@@ -26,10 +26,17 @@
   </li>
   <li>
     <input type="checkbox" id="filter-electricity-switch"
-        data-filter-value="electricity" />
+        data-filter-value="power" />
     <label for="filter-electricity-switch">
       Electricity
       <%= image_tag 'power_pin.png', size: '16x16', alt: 'power' %>
+    </label>
+  </li>
+  <li>
+    <input type="checkbox" id="filter-none" />
+    <label for="filter-none">
+      None
+      <%= image_tag 'none_pin.png', size: '16x16', alt: 'none' %>
     </label>
   </li>
   <div class="peopleCount">
