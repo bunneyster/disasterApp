@@ -49,6 +49,7 @@ class Venue < ActiveRecord::Base
         sensors: {
           icon: row['image'].downcase,
           light: row['LightSensor'],
+          people: row['peopleCount'],
           temperature: row['Temperature'],
           water: row['Water'],
         },
