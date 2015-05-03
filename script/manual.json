@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Brookline Jaguar",
+    "address": "880R Commonwealth Avenue, Boston, MA, 02141, USA",
+    "phone": "6172770266",
+    "location":{"lat":"42.3502641","long":"-71.1141157"},
+    "yelp_id": "Dave02",
+    "power": true
+  },
+  {
+    "name": "Cambridge Mayor’s Office",
+    "address": "Cambridge City Council 795 Massachusetts Ave., Cambridge, MA 02139, USA",
+    "phone": "6173494321",
+    "location":{"lat":"42.3783904","long":"-71.1129097"},
+    "yelp_id": "Dave03",
+    "power": true
+  },
+  {
+    "name": "The Castle",
+    "address": "225 Bay State Rd, Boston, MA 02215, USA",
+    "phone": "6173532934",
+    "location":{"lat":"42.3457368","long":"-71.1032475"},
+    "yelp_id": "Curry01",
+    "power": true
+  },
+  {
+    "name": "Tasty Burger",
+    "address": "1301 Boylston St, Boston, MA 02215, USA",
+    "phone": "6174254444",
+    "location":{"lat":"42.344749","long":"-71.098372"},
+    "yelp_id": "Curry02",
+    "power": true
+  },
+  {
+    "name": "Sweet Cheeks Q",
+    "address": "1381 Boylston St, Boston, MA 02215, USA",
+    "phone": "6172661300",
+    "location":{"lat":"42.343904","long":"-71.1011"},
+    "yelp_id": "Curry03",
+    "power": true
+  },
+  {
+    "name": "Regal Cinemas Fenway 13 & RPX",
+    "address": "201 Brookline Ave, Boston, MA 02215, USA",
+    "phone": "6174246111",
+    "location":{"lat":"42.344686","long":"-71.101766"},
+    "yelp_id": "Curry04",
+    "power": true
+  },
+  {
+    "name": "Legal Sea Foods",
+    "address": "26 Park Plaza, Boston, MA 02116, USA",
+    "phone": "6174264444",
+    "location":{"lat":"42.350972","long":"-71.067747"},
+    "yelp_id": "Curry05",
+    "power": true
+  },
+  {
+    "name": "House of Blues",
+    "address": "15 Lansdowne St, Boston, MA 02215, USA",
+    "phone": "8886932583",
+    "location":{"lat":"42.347354","long":"-71.095669"},
+    "yelp_id": "Curry06",
+    "power": true
+  },
+  {
+    "name": "Crispy Crepes Cafe",
+    "address": "512 A Park Drive, Boston, MA 02215, USA",
+    "phone": "6178599585",
+    "location":{"lat":"42.3133735","long":"-71.0571571"},
+    "yelp_id": "Curry07",
+    "power": true
+  },
+  {
+    "name": "Harvard Square",
+    "address": "18 Brattle St #352, Cambridge, MA 02138, USA",
+    "phone": "6174913434",
+    "location":{"lat":"42.373532","long":"-71.11896"},
+    "yelp_id": "Curry08",
+    "power": true
+  },
+  {
+    "name": "Weld Boat House",
+    "address": "971 Memorial Dr, Cambridge, MA 02138, USA",
+    "phone": "6174913434",
+    "location":{"lat":"42.3694176","long":"-71.1221186"},
+    "yelp_id": "Curry09",
+    "power": true
+  },
+  {
+    "name": "Fenway Park",
+    "address": "4 Yawkey Way, Boston, MA 02215, USA",
+    "phone": "8777337699",
+    "location":{"lat":"42.346676","long":"-71.097218"},
+    "yelp_id": "Curry10",
+    "power": true
+  }
+]

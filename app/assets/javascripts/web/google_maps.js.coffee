@@ -1,7 +1,10 @@
 class CachedMarker
   constructor: ->
     @_marker = new google.maps.Marker()
-    @_s = { map: null, iconUrl: null, lat: null, long: null }
+    @_s = { map: null, iconUrl: null, lat: null, long: null, title: null }
+
+  googleMarker: ->
+    @_marker
 
   setMap: (newMap) ->
     return if newMap is @_s.map
@@ -80,7 +83,7 @@ class GoogleMapClass
     else
       marker = new CachedMarker()
       @_markers[venue.id] = marker
-      google.maps.event.addListener marker._marker, 'click',
+      google.maps.event.addListener marker.googleMarker(), 'click',
           @_onMarkerClick.bind(@, venue.id)
 
     if @_matchesFilters venue
@@ -108,8 +111,9 @@ class GoogleMapClass
   _onMarkerClick: (venueId, event) ->
     venue = @_venues[venueId]
     @_infoWindow.close()
-    @_infoWindow = new google.maps.InfoWindow(content: @_getMarkerContent(venue))
-    @_infoWindow.open @_map, @_markers[venueId]
+    @_infoWindow = new google.maps.InfoWindow(
+        content: @_getMarkerContent(venue))
+    @_infoWindow.open @_map, @_markers[venueId].googleMarker()
 
   _getMarkerContent: (venue) ->
     pieces = ["<div>#{venue.name}</div>"]
