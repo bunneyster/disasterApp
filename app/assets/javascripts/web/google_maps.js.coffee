@@ -122,7 +122,7 @@ class GoogleMapClass
       continue unless value
       pieces.push "<img src='assets/" + filterName + "_48x.png' width='25px' height'25px'>"
 
-    phone = venue.phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")
+    phone = (venue.phone or '').replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")
     pieces.push("<p class='popup-address'><i class='fa fa-globe'></i> #{venue.address}</p>")
     pieces.push("<p class='popup-phone'><i class='fa fa-phone'></i> #{phone}</p>")
     pieces.push("<p class='popup-people-count'><i class='fa fa-male'></i> #{venue.people}</p></div>")
