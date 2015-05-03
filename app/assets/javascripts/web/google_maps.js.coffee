@@ -72,11 +72,11 @@ class GoogleMapClass
     Liveworx.Venues.readAll()
         .then (venues) =>
           @_processVenue(venue) for venue in venues
-          #if @_lastInfoWindow isnt null
-          #  @_showInfoWindow @_lastInfoVenueId
-          setTimeout @_readVenues.bind(@), 10000
+          if @_lastInfoWindow isnt null
+            @_showInfoWindow @_lastInfoVenueId
+          setTimeout @_readVenues.bind(@), 5000
         .catch (error) =>
-          console.log error
+          console.error error
           setTimeout @_readVenues.bind(@), 2000
 
   _processVenue: (venue) ->
@@ -164,7 +164,6 @@ class GoogleMapClass
     csrfHeaderValue = $('meta[name="csrf-token"]').attr('content')
     headers = {}
     headers[csrfHeaderName] = csrfHeaderValue
-    console.log headers
     fetch("/venues/#{venueId}/add_warning",
           method: 'post', body: '', headers: headers)
         .catch (error) ->

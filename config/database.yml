@@ -80,7 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: liveworx_production
-  username: liveworx
-  password: <%= ENV['LIVEWORX_DATABASE_PASSWORD'] %>
-
+  database: liveworx_development
