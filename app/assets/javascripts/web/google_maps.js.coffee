@@ -72,8 +72,8 @@ class GoogleMapClass
     Liveworx.Venues.readAll()
         .then (venues) =>
           @_processVenue(venue) for venue in venues
-          if @_lastInfoWindow isnt null
-            @_showInfoWindow @_lastInfoVenueId
+          #if @_lastInfoWindow isnt null
+          #  @_showInfoWindow @_lastInfoVenueId
           setTimeout @_readVenues.bind(@), 10000
         .catch (error) =>
           console.log error
@@ -144,8 +144,13 @@ class GoogleMapClass
     pieces.push("<p class='popup-field'><i class='fa fa-globe'></i> #{venue.address}</p>")
     pieces.push("<p class='popup-field'><i class='fa fa-phone'></i> #{phone}</p>")
     pieces.push("<p class='popup-field'><i class='fa fa-male'></i> #{venue.people}</p>")
-    pieces.push("<a class='popup-field override-button' onclick='window.Liveworx.GoogleMap.onAddWarningClick()'><i class='fa fa-warning'></i></a>")
-    pieces.push("</div>")
+    pieces.push("<p class='override-section popup-field'>")
+    pieces.push("<a class='button alert radius' onclick='window.Liveworx.GoogleMap.onAddWarningClick()'><i class='fa fa-warning'></i> Report</a>")
+    if venue.userWarnings = 1
+      pieces.push("<span class='warning-count'>  (#{venue.userWarnings} person thinks this location is not safe.)</span>")
+    else if venue.userWarnings > 1
+      pieces.push("<span class='warning-count'>  (#{venue.userWarnings} people think this location is not safe.)</span>")
+    pieces.push("</p></div>")
     pieces.join('')
 
   onAddWarningClick: ->

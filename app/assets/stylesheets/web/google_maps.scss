@@ -42,6 +42,14 @@ html.map {
   img {
     margin: 0 0.2rem;
   }
+  .override-section {
+    padding: 0.4rem 0 0 0;
+    font-size: 1rem;
+    .button {
+      margin: 0 0.2rem 0 0;
+      padding: 0.2rem 0.4rem;
+    }
+  }
 }
 
 #filters-container {
