@@ -121,6 +121,8 @@ class GoogleMapClass
     for filterName, value of venue.filters
       continue unless value
       pieces.push "<img src='assets/" + filterName + "_48x.png' width='25px' height'25px'>"
+    pieces.push("<p class='popup-address'>#{venue.address}</p>")
+    pieces.push("<p class='popup-phone'>#{venue.phone}</p>")
     pieces.push("<p class='popup-people-count'><i class='fa fa-male'> #{venue.people}</i></p></div>")
     pieces.join('')
 
