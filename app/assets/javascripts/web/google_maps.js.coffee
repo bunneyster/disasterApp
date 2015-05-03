@@ -32,6 +32,7 @@ class GoogleMapClass
         center: { lat: -34.397, lng: 150.644 },
         zoom: 13
     @_map = new google.maps.Map(@_domRoot, options)
+    @_infoWindow = new google.maps.InfoWindow()
     @_bootGeolocation()
     @_readVenues()
 
@@ -66,8 +67,17 @@ class GoogleMapClass
 
   _onMarkerClick: (venueId, event) ->
     venue = @_venues[venueId]
-    infoWindow = new google.maps.InfoWindow(content: venue.name)
-    infoWindow.open @_map, @_markers[venueId]
+    @_infoWindow.close()
+    @_infoWindow = new google.maps.InfoWindow(content: @_getMarketContent(venue))
+    @_infoWindow.open @_map, @_markers[venueId]
+
+  _getMarketContent: (venue) ->
+    pieces = ["<div>#{venue.name}</div>"]
+    for filterName, value of venue.filters
+      continue unless value
+      pieces.push "<img src='assets/" + filterName + "_48x.png' width='16px' height'16px'>"
+    pieces.push("<p><i class='fa fa-male'> #{venue.people}</i></p>")
+    pieces.join('')
 
   # Tries to center the map using the user's location.
   _bootGeolocation: ->
@@ -94,7 +104,7 @@ class GoogleMapClass
     else
       content = 'Error: Your browser does not support geolocation.'
 
-    infowindow = new google.maps.InfoWindow { content: content }
+    @_infoWindow = new google.maps.InfoWindow(content: content)
 
 window.Liveworx ||= {}
 window.Liveworx.GoogleMap = new GoogleMapClass()
