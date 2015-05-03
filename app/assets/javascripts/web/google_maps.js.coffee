@@ -41,6 +41,7 @@ class GoogleMapClass
 
     marker = new google.maps.Marker(
         map: @_map,
+        icon: venue.icon_url,
         position: new google.maps.LatLng(venue.lat, venue.long)
         title: venue.name)
     google.maps.event.addListener marker, 'click',
