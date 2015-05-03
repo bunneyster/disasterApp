@@ -1,3 +1,31 @@
+class CachedMarker
+  constructor: ->
+    @_marker = new google.maps.Marker()
+    @_s = { map: null, iconUrl: null, lat: null, long: null }
+
+  setMap: (newMap) ->
+    return if newMap is @_s.map
+    @_s.map = newMap
+    @_marker.setMap newMap
+
+  setIcon: (newIcon) ->
+    return if newIcon.url is @_s.iconUrl
+    @_s.iconUrl = newIcon.url
+    @_marker.setIcon newIcon
+
+  setPosition: (newPosition) ->
+    lat = newPosition.lat()
+    long = newPosition.lng()
+    return if lat is @_s.lat and long is @_s.long
+    @_s.lat = lat
+    @_s.long = long
+    @_marker.setPosition newPosition
+
+  setTitle: (newTitle) ->
+    return if newTitle is @_s.title
+    @_s.title = newTitle
+    @_marker.setTitle newTitle
+
 class GoogleMapClass
   constructor: ->
     @_domRoot = null
@@ -50,9 +78,9 @@ class GoogleMapClass
     if venue.id of @_markers
       marker = @_markers[venue.id]
     else
-      marker = new google.maps.Marker()
+      marker = new CachedMarker()
       @_markers[venue.id] = marker
-      google.maps.event.addListener marker, 'click',
+      google.maps.event.addListener marker._marker, 'click',
           @_onMarkerClick.bind(@, venue.id)
 
     if @_matchesFilters venue
@@ -65,10 +93,13 @@ class GoogleMapClass
     marker.setTitle venue.name
 
   _matchesFilters: (venue) ->
+    people = @_filters.people || 0
     if @_filters.nothing is true
+      return false if venue.people < people
       for name, value of venue.filters
         return false if value is true
     else
+      return false if venue.people < people
       for name, value of @_filters
         continue unless value is true
         return false if venue.filters[name] is false

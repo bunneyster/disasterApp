@@ -82,5 +82,6 @@ def write_business(json)
   set_property venue_name, 'peopleCount', rand(500).round
 end
 
-jsons = JSON.load File.read(File.expand_path('~/tmp/boston200.json'))
+jsons = JSON.load(File.read('script/boston200.json')) +
+    JSON.load(File.read('script/manual.json'))
 jsons.each { |j| write_business j }
