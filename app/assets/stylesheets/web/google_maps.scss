@@ -29,8 +29,13 @@ html.map {
   .popup-name {
     margin: 0;
     padding-bottom: 0.5rem;
+    font-weight: 600;
   }
-  .popup-people-count {
+  .popup-icon-wrapper {
+    margin: 0;
+    padding: 0.2rem 1rem 0.5rem 1rem;
+  }
+  .popup-field {
     margin: 0;
     padding: 0;
   }
