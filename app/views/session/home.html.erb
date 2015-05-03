@@ -2,21 +2,33 @@
 <ul id="filters-container">
   <p class="filter-group-label">Find locations with:</p>
   <li>
-    <input type="checkbox" id="filter-heat-switch" data-filter-value="heat" />
-    <label for="filter-heat-switch">Heat</label>
+    <input type="checkbox" id="filter-food-switch" data-filter-value="food" />
+    <label for="filter-food-switch">
+      Food
+      <%= image_tag 'food_48x.png', size: '16x16', alt: 'food' %>
+    </label>
   </li>
   <li>
     <input type="checkbox" id="filter-water-switch"
         data-filter-value="water" />
-    <label for="filter-water-switch">Water</label>
+    <label for="filter-water-switch">
+      Water
+      <%= image_tag 'water_48x.png', size: '16x16', alt: 'water' %>
+    </label>
+  </li>
+  <li>
+    <input type="checkbox" id="filter-heat-switch" data-filter-value="heat" />
+    <label for="filter-heat-switch">
+      Heat
+      <%= image_tag 'heat_48x.png', size: '16x16', alt: 'heat' %>
+    </label>
   </li>
   <li>
     <input type="checkbox" id="filter-electricity-switch"
         data-filter-value="electricity" />
-    <label for="filter-electricity-switch">Electricity</label>
-  </li>
-  <li>
-    <input type="checkbox" id="filter-food-switch" data-filter-value="food" />
-    <label for="filter-food-switch">Food</label>
+    <label for="filter-electricity-switch">
+      Electricity
+      <%= image_tag 'power_48x.png', size: '16x16', alt: 'power' %>
+    </label>
   </li>
 </ul>
