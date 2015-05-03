@@ -2,6 +2,7 @@ class CreateVenues < ActiveRecord::Migration
   def change
     create_table :venues do |t|
       t.string :name, limit: 128, null: false
+      t.string :twx_name, limit: 256, null: true
       t.float :lat, null: false
       t.float :long, null: false
       t.string :address, limit: 128, null: true

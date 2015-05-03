@@ -40,12 +40,13 @@ ActiveRecord::Schema.define(version: 20150503044500) do
   add_index "users", ["exuid"], name: "index_users_on_exuid", unique: true, using: :btree
 
   create_table "venues", force: :cascade do |t|
-    t.string "name",    limit: 128, null: false
-    t.float  "lat",                 null: false
-    t.float  "long",                null: false
-    t.string "address", limit: 128
-    t.string "phone",   limit: 32
-    t.text   "sensors",             null: false
+    t.string "name",     limit: 128, null: false
+    t.string "twx_name", limit: 256
+    t.float  "lat",                  null: false
+    t.float  "long",                 null: false
+    t.string "address",  limit: 128
+    t.string "phone",    limit: 32
+    t.text   "sensors",              null: false
   end
 
   add_index "venues", ["lat", "long"], name: "index_venues_on_lat_and_long", unique: true, using: :btree

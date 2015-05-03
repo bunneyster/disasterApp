@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   authpwn_session
 
   get 'venues' => 'venues#index'
+  post 'venues/:id/add_warning' => 'venues#add_warning'
 
   resources :users
 

@@ -143,9 +143,22 @@ class GoogleMapClass
     pieces.push("</div>")
     pieces.push("<p class='popup-field'><i class='fa fa-globe'></i> #{venue.address}</p>")
     pieces.push("<p class='popup-field'><i class='fa fa-phone'></i> #{phone}</p>")
-    pieces.push("<p class='popup-field'><i class='fa fa-male'></i> #{venue.people}</p></div>")
-    pieces.push("<a class='popup-field override-button'></a>")
+    pieces.push("<p class='popup-field'><i class='fa fa-male'></i> #{venue.people}</p>")
+    pieces.push("<a class='popup-field override-button' onclick='window.Liveworx.GoogleMap.onAddWarningClick()'><i class='fa fa-warning'></i></a>")
+    pieces.push("</div>")
     pieces.join('')
+
+  onAddWarningClick: ->
+    venueId = @_lastInfoVenueId
+    csrfHeaderName = $('meta[name="csrf-param"]').attr('content')
+    csrfHeaderValue = $('meta[name="csrf-token"]').attr('content')
+    headers = {}
+    headers[csrfHeaderName] = csrfHeaderValue
+    console.log headers
+    fetch("/venues/#{venueId}/add_warning",
+          method: 'post', body: '', headers: headers)
+        .catch (error) ->
+          console.error error
 
   # Tries to center the map using the user's location.
   _bootGeolocation: ->
