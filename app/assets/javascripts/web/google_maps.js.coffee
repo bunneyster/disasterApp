@@ -116,11 +116,12 @@ class GoogleMapClass
     @_infoWindow.open @_map, @_markers[venueId].googleMarker()
 
   _getMarkerContent: (venue) ->
-    pieces = ["<div>#{venue.name}</div>"]
+    pieces = [
+      "<div class='venue-popup'><h5 class='popup-name'>#{venue.name}</h5>"]
     for filterName, value of venue.filters
       continue unless value
-      pieces.push "<img src='assets/" + filterName + "_48x.png' width='16px' height'16px'>"
-    pieces.push("<p><i class='fa fa-male'> #{venue.people}</i></p>")
+      pieces.push "<img src='assets/" + filterName + "_48x.png' width='25px' height'25px'>"
+    pieces.push("<p class='popup-people-count'><i class='fa fa-male'> #{venue.people}</i></p></div>")
     pieces.join('')
 
   # Tries to center the map using the user's location.

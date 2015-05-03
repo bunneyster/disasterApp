@@ -25,6 +25,20 @@ html.map {
   flex: auto;
 }
 
+.venue-popup {
+  .popup-name {
+    margin: 0;
+    padding-bottom: 0.5rem;
+  }
+  .popup-people-count {
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    margin: 0 0.2rem;
+  }
+}
+
 #filters-container {
   padding: 0.5rem 1rem;
   margin: 0;
