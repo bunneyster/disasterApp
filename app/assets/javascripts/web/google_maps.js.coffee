@@ -57,7 +57,12 @@ class GoogleMapClass
     @_infoWindow.open @_map, @_markers[venueId]
 
   _getMarketContent: (venue) ->
-    "<div>#{venue.name}</div>" + "<i class='fa fa-male'> #{venue.id}</i>"
+    pieces = ["<div>#{venue.name}</div>"]
+    for filterName, value of venue.filters
+      continue unless value
+      pieces.push "<img src='assets/" + filterName + "_48x.png' width='16px' height'16px'>"
+    pieces.push("<p><i class='fa fa-male'> #{venue.peopleCount}</i></p>")
+    pieces.join('')
 
   # Tries to center the map using the user's location.
   _bootGeolocation: ->
