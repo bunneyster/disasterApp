@@ -121,9 +121,11 @@ class GoogleMapClass
     for filterName, value of venue.filters
       continue unless value
       pieces.push "<img src='assets/" + filterName + "_48x.png' width='25px' height'25px'>"
-    pieces.push("<p class='popup-address'>#{venue.address}</p>")
-    pieces.push("<p class='popup-phone'>#{venue.phone}</p>")
-    pieces.push("<p class='popup-people-count'><i class='fa fa-male'> #{venue.people}</i></p></div>")
+
+    phone = venue.phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")
+    pieces.push("<p class='popup-address'><i class='fa fa-globe'></i> #{venue.address}</p>")
+    pieces.push("<p class='popup-phone'><i class='fa fa-phone'></i> #{phone}</p>")
+    pieces.push("<p class='popup-people-count'><i class='fa fa-male'></i> #{venue.people}</p></div>")
     pieces.join('')
 
   # Tries to center the map using the user's location.
