@@ -60,7 +60,6 @@ class Venue < ActiveRecord::Base
 
   # Updates the database with venue information from Thingworx.
   def self.reload_from_thingworx!
-    create_venue_in_thingworx!
     raw_venues = read_from_thingworx!
     raw_venues.map do |raw_venue|
       venue = Venue.where(lat: raw_venue[:lat], long: raw_venue[:long]).
