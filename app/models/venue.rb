@@ -13,6 +13,12 @@ class Venue < ActiveRecord::Base
   # The longitude of the venue's location.
   validates :long, presence: true, uniqueness: { scope: :lat }
 
+  # The venue's address.
+  validates :address, length: { in: 1..128, allow_nil: true }
+
+  # The venue's phone number, without any formatting.
+  validates :phone, length: { in: 1..32, allow_nil: true }
+
   # The sensor readings.
   serialize :sensors, JSON
 
@@ -51,6 +57,8 @@ class Venue < ActiveRecord::Base
         lat: row['Location']['latitude'],
         long: row['Location']['longitude'],
         name: row['ui_name'],
+        phone: row['phone'],
+        address: row['address'],
         sensors: {
           hasFood: row['hasFood'],
           hasHeat: row['hasHeat'],

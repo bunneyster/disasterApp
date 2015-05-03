@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20150503044500) do
     t.string "name",    limit: 128, null: false
     t.float  "lat",                 null: false
     t.float  "long",                null: false
+    t.string "address", limit: 128
+    t.string "phone",   limit: 32
     t.text   "sensors",             null: false
   end
 

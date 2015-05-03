@@ -73,6 +73,8 @@ def write_business(json)
   restart_thing venue_name
   set_property venue_name, 'Location', loc
   set_property venue_name, 'ui_name', json['name']
+  set_property venue_name, 'address', json['address']
+  set_property venue_name, 'phone', json['phone']
   set_property venue_name, 'hasWater', rand < 0.75
   set_property venue_name, 'hasFood', rand < 0.5
   set_property venue_name, 'hasPower', rand < 0.25

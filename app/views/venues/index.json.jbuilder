@@ -6,6 +6,8 @@ json.array! @venues do |venue|
   json.icon_name venue.sensors['icon']
   json.icon_url venue_icon_url(venue)
   json.people venue.sensors['people']
+  json.address venue.address
+  json.phone venue.phone
   json.filters do
     json.food venue.sensors['hasFood']
     json.heat venue.sensors['hasHeat']
