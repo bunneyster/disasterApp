@@ -47,6 +47,7 @@ class Venue < ActiveRecord::Base
         long: row['Location']['longitude'],
         name: row['ui_name'],
         sensors: {
+          icon: row['image'].downcase,
           light: row['LightSensor'],
           temperature: row['Temperature'],
           water: row['Water'],
