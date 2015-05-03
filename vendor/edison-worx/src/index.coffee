@@ -33,9 +33,11 @@ backend.initialize()
 
 devices.initialize()
   .then ->
+    devices.lcd.info 'Initializing', 'Web controller'
     webController.initialize()
   .then ->
-    console.log "Started up"
+    devices.lcd.info 'Boot', 'Completed'
+    console.log 'Boot completed'
   .catch (error) ->
     console.error "BACKEND INIT FAILED: #{error}"
     console.error error.stack

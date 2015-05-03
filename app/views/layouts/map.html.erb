@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="map">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Where Do I Go?</title>
+
+  <%= stylesheet_link_tag :application %>
+  <%= render 'layouts/google_analytics' %>
+  <%= javascript_include_tag 'vendor/modernizr' %>
+  <%= favicon_link_tag %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<header id="header">
+  <%= render 'layouts/top_nav' %>
+</header>
+
+<article id="page-body">
+<%= yield %>
+</article>
+
+<%= javascript_include_tag :application %>
+<%= google_maps_include_tag %>
+</body>
+</html>

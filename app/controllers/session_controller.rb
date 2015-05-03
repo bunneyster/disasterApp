@@ -12,7 +12,7 @@ class SessionController < ApplicationController
 
   # Sets up the 'session/home' view. A user is logged in.
   def home
-    render 'session/home'
+    render 'session/home', layout: 'map'
   end
   private :home
 

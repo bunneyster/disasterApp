@@ -5,6 +5,7 @@ IpAddress = require './devices/ip_address.coffee'
 Lcd = require './devices/lcd.coffee'
 Led = require './devices/led.coffee'
 Light = require './devices/light.coffee'
+Rotary = require './devices/rotary.coffee'
 Temperature = require './devices/temperature.coffee'
 Touch = require './devices/touch.coffee'
 Water = require './devices/water.coffee'
@@ -55,6 +56,8 @@ class Devices
     @alcohol = new Alcohol 0, 15
     # The touch sensor must be connected to D 8 and uses up GPIO 8.
     @touch = new Touch 8
+    # The rotary sensor must be connected to AIO 2.
+    @rotary = new Rotary 2
     # The water sensor must be connected to D 4 and uses up GPIO 4.
     @water = new Water 4
     # The temperature sensor must be connected to AIO 3.
@@ -88,7 +91,9 @@ class Devices
     {
       alcohol: @alcohol.value()
       gyroscope: @gyroscope.value()
+      ipAddress: @ipAddress.value()
       light: @light.value()
+      rotary: @rotary.value()
       temperature: @temperature.value()
       touch: @touch.value()
       water: @water.value()
