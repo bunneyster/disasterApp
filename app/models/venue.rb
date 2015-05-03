@@ -50,6 +50,7 @@ class Venue < ActiveRecord::Base
           icon: row['image'].downcase,
           light: row['LightSensor'],
           people: row['peopleCount'],
+          food: row['Rotary'],
           temperature: row['Temperature'],
           water: row['Water'],
         },
