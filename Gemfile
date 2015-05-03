@@ -46,6 +46,7 @@ gem 'omniauth-google-oauth2', '>= 0.2.6'
 #gem 'faraday', '~> 0.8.0'
 
 # CSS assets.
+# TODO: 5.5.2.1
 gem 'foundation-rails', '= 5.5.1.2'
 gem 'font-awesome-rails', '>= 4.3.0.0'
 
