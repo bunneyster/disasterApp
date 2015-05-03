@@ -1,4 +1,5 @@
 Alcohol = require './devices/alcohol.coffee'
+BtCount = require './devices/bt_count.coffee'
 Gyro = require './devices/gyro.coffee'
 InternalLed = require './devices/internal_led.coffee'
 IpAddress = require './devices/ip_address.coffee'
@@ -15,6 +16,12 @@ Water = require './devices/water.coffee'
 #
 # This should be a singleton.
 class Devices
+  # @property {BtCount} the bluetooth device count virtual sensor
+  btCount: null
+
+  # @property {IpAddress} the IP address virtual sensor
+  ipAddress: null
+
   # @property {Lcd} the LCD
   lcd: null
 
@@ -33,9 +40,6 @@ class Devices
   # @property {Light} the light sensor
   light: null
 
-  # @property {IpAddress} the IP address virtual sensor
-  ipAddress: null
-
   # @property {Led} the red LED
   redLed: null
 
@@ -46,6 +50,8 @@ class Devices
   greenLed: null
 
   constructor: ->
+    # The Bluetooth sensor is virtual and just works.
+    @btCount = new BtCount()
     # The IP address sensor is virtual and just works.
     @ipAddress = new IpAddress()
     # The LCD can be connected to any I2C port.

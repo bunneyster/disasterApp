@@ -7,9 +7,9 @@ class Light
   constructor: (aioPort) ->
     @_grove = new grove.GroveLight aioPort
 
-  # @return {Number} the number of lumens received by the sensor
+  # @return {Number} 1 if the sensor detects light, -1 otherwise
   value: ->
-    @_grove.value()
+    if @_grove.value() > 0 then 1 else -1
 
 
 module.exports = Light
