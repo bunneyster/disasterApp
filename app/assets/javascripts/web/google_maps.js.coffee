@@ -117,7 +117,7 @@ class GoogleMapClass
   _hideLastInfoWindow: ->
     @_lastInfoWindow.close()
     @_lastInfoWindow = null
-    @_lastInfoVenueId is null
+    @_lastInfoVenueId = null
 
   _showInfoWindow: (venueId) ->
     venue = @_venues[venueId]
@@ -127,6 +127,10 @@ class GoogleMapClass
     infoWindow = new google.maps.InfoWindow(
         content: @_getMarkerContent(venue))
     infoWindow.open @_map, @_markers[venueId].googleMarker()
+    google.maps.event.addListener infoWindow, 'closeclick', =>
+      @_lastInfoWindow = null
+      @_lastInfoVenueId = null
+
     @_lastInfoWindow = infoWindow
     @_lastInfoVenueId = venueId
 
@@ -155,6 +159,7 @@ class GoogleMapClass
 
   onAddWarningClick: ->
     venueId = @_lastInfoVenueId
+
     csrfHeaderName = $('meta[name="csrf-param"]').attr('content')
     csrfHeaderValue = $('meta[name="csrf-token"]').attr('content')
     headers = {}
